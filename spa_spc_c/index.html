@@ -1,8 +1,74 @@
 <html>
 <head>
-	<title></title>
+	<title>The best web you'll see</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
 
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+
+
+				<canvas id="c"></canvas>
+				<img src="assets/phone.png" id="case">
+				<img src="assets/i6.png" id="pattern">
+
+				<a class="btn btn-success" id="saver">New case</a>
+
+			</div>
+			<div class="col-md-4">
+				<ul>
+					<li>Model 1</li>
+					<li>Model 2</li>
+					<li>Model 3</li>
+					<li>Model 4</li>
+				</ul>
+				<input type="hidden" role="uploadcare-uploader"
+				data-preview-step="true"
+				data-images-only="true" />
+
+<!-- 				<img src="http://abduzeedo.com/files/originals/pattern-library.jpg" id="my-image"> -->
+				<img src="http://fc03.deviantart.net/fs70/f/2012/180/b/f/pattern_variation_by_absurdwordpreferred-d55auet.jpg" id="my-image">
+<!-- 				<img src="http://chrispiascik.wpengine.netdna-cdn.com/wp-content/uploads/2012/11/1236-20121115-AGGHH-PATTERN.jpg" id="my-image"> -->
+
+			</div>
+		</div>
+		<div class="row">
+			<img id="canvasImg">
+		</div>
+	</div>
+	
+	
+
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://underscorejs.org/underscore-min.js"></script>
+	<script src="http://backbonejs.org/backbone-min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="fabric.js"></script>
+	<script>
+	UPLOADCARE_LOCALE = "en";
+	UPLOADCARE_TABS = "file facebook dropbox instagram";
+	UPLOADCARE_AUTOSTORE = true;
+	UPLOADCARE_PUBLIC_KEY = "8012d0738a4f45c757e4";
+	</script>
+	<script src="http://ucarecdn.com/widget/1.5.0/uploadcare/uploadcare-1.5.0.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
