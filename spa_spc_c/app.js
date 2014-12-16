@@ -1,6 +1,7 @@
-var el = document.getElementById("my-image");
+
 var lo = document.getElementById("logo");
 var btn = document.getElementById("saver");
+
 
 // console.log(el)
 // el.addEventListener("click",function draw_b() {
@@ -10,35 +11,65 @@ var btn = document.getElementById("saver");
 // }, false)
 
 
-
 var canvas = new fabric.Canvas('c');
 canvas.setHeight(600);
 canvas.setWidth(400);
-var imgElement = document.getElementById('my-image');
-var imgInstance = new fabric.Image(imgElement, {
-  height: 600,
-  width: 300,
-  left: 70,
-  top: 0,
+canvas.setOverlayImage('assets/i62.png', canvas.renderAll.bind(canvas));
+// canvas.setBackgroundImage('assets/i6.png', canvas.renderAll.bind(canvas));
+
+
+
+
+var widgets = uploadcare.initialize('#my-form');
+widgets;
+var widgets = uploadcare.initialize();
+var widget = uploadcare.Widget('[role=uploadcare-uploader]');
+console.log(widgets);
+console.log(widget);
+widget.onUploadComplete(function(info) {
+  console.log(info.cdnUrl);
+  console.log(info);
+  $("#wuju").append('<img id="my-image">');
+  $("#my-image").attr("src", info.cdnUrl);
+  var el = document.getElementById("my-image");
+  var imgElement = document.getElementById('my-image');
+  var imgInstance = new fabric.Image(imgElement, {
+    height: 600,
+    width: 400,
+    left: 0,
+    top: 0,
   // opacity: 0.85
 });
-
-
-var imagElement3 = document.getElementById('case');
-var newCase = new fabric.Image(imagElement3,{
-  height: 768,
-  width: 576,
-  left: -80,
-  top:0,
+  el.addEventListener("click",function(){
+    canvas.add(imgInstance);
+  // canvas.add(newpat);
+  // canvas.item(1).selectable = false;
+  // canvas.item(0).selectable = true;
+  // canvas.add(newCase);
+  // canvas.add(rect);
+  // canvas.add(rect2);
+  // canvas.add(rect3);
+  // canvas.add(rect4);
+});
 });
 
-var imagElement2 = document.getElementById('pattern');
-var newpat = new fabric.Image(imagElement2, {
-  height: 650,
-  width: 420,
-  left: 0,
-  top: -20
-});
+
+
+// var imagElement3 = document.getElementById('case');
+// var newCase = new fabric.Image(imagElement3,{
+//   height: 768,
+//   width: 576,
+//   left: -80,
+//   top:0,
+// });
+
+// var imagElement2 = document.getElementById('pattern');
+// var newpat = new fabric.Image(imagElement2, {
+//   height: 650,
+//   width: 420,
+//   left: 0,
+//   top: -20
+// });
 
 
 var rect = new fabric.Rect({
@@ -73,26 +104,7 @@ var rect4 = new fabric.Rect({
   height: 600
 });
 
-el.addEventListener("click",function(){
-  canvas.add(imgInstance);
-  canvas.add(newpat);
-  // canvas.add(newCase);
-  // canvas.add(rect);
-  // canvas.add(rect2);
-  // canvas.add(rect3);
-  // canvas.add(rect4);
-});
 
-btn.addEventListener("click",function(){
-  uploadcare.openDialog(null, {
-    previewStep: true,
-    imagesOnly: true
-  }).done(function(file) {
-    file.promise().done(function(fileInfo){
-      console.log(fileInfo.cdnUrl);
-    });
-  });
-});
 
 
 

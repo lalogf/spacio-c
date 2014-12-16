@@ -12,6 +12,9 @@ A SPA with routes managed with Backbone.
 The UI will have its foundation on Bootstrap and jQuery.
 
 ###Other APIs
+Mandrill - Mailchimp
+Paperclip
+
 Probably:
 Uploadcare
 Aviary
@@ -138,6 +141,7 @@ rails new spc-c
 gem 'hirb'
 gem 'carrierwave'
 gem 'carrierwave-postgresql'
+gem 'mandill-api'
 
 
 rails generate uploader Avatar
