@@ -1,13 +1,24 @@
 <html>
 <head>
 	<title>The best web you'll see</title>
+	<script src="https://cdn.jsdelivr.net/emojione/1.5.2/lib/js/emojione.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/1.5.2/assets/css/emojione.min.css" />
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/jquery-emoji-picker/css/jquery.emojipicker.css">
 
+
+	<!-- Emoji Data -->
+	<link rel="stylesheet" type="text/css" href="bower_components/jquery-emoji-picker/css/jquery.emojipicker.a.css">
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="bower_components/jquery-emoji-picker/js/jquery.emojipicker.js"></script>
+	<script type="text/javascript" src="bower_components/jquery-emoji-picker/js/jquery.emojipicker.a.js"></script>
 </head>
 <body>
 
@@ -16,54 +27,78 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-
 				<div class="col-md-6 col-md-offset-3">
 					<canvas id="c"></canvas>
-					<img src="assets/phone.png" id="case">
-					<img src="assets/i6.png" id="pattern">
-
-					<!-- 					<a class="btn btn-success" id="saver">New case</a> -->
 				</div>
 
 			</div>
 			<div class="col-md-4">
-				<ul>
-					<li>Model 1</li>
-					<li>Model 2</li>
-					<li>Model 3</li>
-					<li>Model 4</li>
-				</ul>
 
-				<form id="myform">
-					<input type="hidden" id="saver" role="uploadcare-uploader" />
-				</form>
+				<div id="wujuwuju">
+					<p>Texto:<p> <input type="text" id="newtext">
+						<p>Tamano:<p> 
+							<select id="pixels">
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+								<option value="30">30</option>
+								<option value="35">35</option>
+								<option value="40">40</option>
+								<option value="45">45</option>
+								<option value="100" selected="selected">50</option>
 
-				<div id="wuju">
-				</div>
-<!-- 				<img src="http://www.ucarecdn.com/b7e02469-1711-4d21-b23a-79f7711ca730/" id="my-image"> -->
-				<!-- 				<img src="http://fc03.deviantart.net/fs70/f/2012/180/b/f/pattern_variation_by_absurdwordpreferred-d55auet.jpg" id="my-image"> -->
-				<!-- 				<img src="http://chrispiascik.wpengine.netdna-cdn.com/wp-content/uploads/2012/11/1236-20121115-AGGHH-PATTERN.jpg" id="my-image"> -->
+							</select>
 
-			</div>
-		</div>
+							<div class="col-md-6">
+								<p>Color:</p> <input type="color" id="color_font" class="form-control"  value="#ff0000">
+							</div>
 
-	</div>
-	
-	
-	<script>
-	UPLOADCARE_LOCALE = "en";
-	UPLOADCARE_TABS = "file facebook dropbox instagram";
-	UPLOADCARE_AUTOSTORE = true;
-	UPLOADCARE_PUBLIC_KEY = "8012d0738a4f45c757e4";
-	</script>
+							<div class="col-md-6">
+								<p>Fondo:</p> 
+								<input type="color" id="back_color" class="form-control"  value="#ff0000">
+							</div>
 
-	<script src="https://ucarecdn.com/widget/1.5.0/uploadcare/uploadcare-1.5.0.min.js"></script>
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="http://underscorejs.org/underscore-min.js"></script>
-	<script src="http://backbonejs.org/backbone-min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="fabric.js"></script>
-	<script type="text/javascript" src="app.js"></script>
-</body>
-</html>
+							<a class="btn btn-success" id="creation">Create</a>
+							<a class="btn btn-danger" id="delete">Eliminar</a>
+							<br>
+							<p><strong>Rotar:</strong></p><br><input type="range" id="angle-control" value="0" min="-90" max="90">
+							<p><strong>Zoom:</strong></p><br><input type="range" id="scale-control" value="1" min="0.1" max="3" step="0.1">
+
+							<br>
+
+							<form id="my-form">
+								<input type="hidden" role="uploadcare-uploader"
+								data-crop="disabled"
+								data-preview-step="true"							data-images-only="true"/>
+							</form>
+						</div>
+						<input type="hidden" id="newcaseimage">
+						<div id="wuju">
+							<img src="http://www.ucarecdn.com/da3ed54d-f05f-4805-a4eb-9a65593a8155/17.jpg" id="my-image">
+							<a class="btn btn-warning" id="agregar">Agregar al canvas</a>
+							<a class="btn btn-success" id="guardar">Guardar canvas</a>
+						</div>
+					</div>
+
+
+
+
+
+
+					<script>
+						UPLOADCARE_LOCALE = "es";
+						UPLOADCARE_TABS = "file url facebook dropbox instagram";
+						UPLOADCARE_PUBLIC_KEY = "8012d0738a4f45c757e4";
+						UPLOADCARE_LIVE = false;
+					</script>
+					<script charset="utf-8" src="https://ucarecdn.com/widget/2.0.6/uploadcare/uploadcare.full.min.js"></script>
+
+
+					<script src="http://underscorejs.org/underscore-min.js"></script>
+					<script src="http://backbonejs.org/backbone-min.js"></script>
+					<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+					<script type="text/javascript" src="fabric.js"></script>
+					<script type="text/javascript" src="app.js"></script>
+				</body>
+				</html>

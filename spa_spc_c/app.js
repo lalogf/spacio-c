@@ -1,108 +1,117 @@
-
-var lo = document.getElementById("logo");
-var btn = document.getElementById("saver");
-
-
-// console.log(el)
-// el.addEventListener("click",function draw_b() {
-//   var b_canvas = document.getElementById("b");
-//   var b_context = b_canvas.getContext("2d");
-//   b_context.fillRect(0, 0, 150, 100);
-// }, false)
+var canvas; 
+var imgElement; 
+var imgInstance;
 
 
-var canvas = new fabric.Canvas('c');
-canvas.setHeight(600);
-canvas.setWidth(400);
-canvas.setOverlayImage('assets/i62.png', canvas.renderAll.bind(canvas));
-// canvas.setBackgroundImage('assets/i6.png', canvas.renderAll.bind(canvas));
+var createCanvas = function (){
+  canvas = new fabric.Canvas('c', {backgroundColor: "white", selectionBorderColor: "white"});
+  canvas.setHeight(600);
+  canvas.setWidth(400);
+  canvas.setOverlayImage('./assets/i6.png', canvas.renderAll.bind(canvas))
+};
 
 
+var uploading = function (){
+  var widget = uploadcare.Widget('[role=uploadcare-uploader]');
+  widget.onUploadComplete(function(info) {
+    $("#wuju").append('<img id="my-image">');
+    $("#my-image").attr("src", info.cdnUrl);
+  })
+};
 
-
-var widgets = uploadcare.initialize('#my-form');
-widgets;
-var widgets = uploadcare.initialize();
-var widget = uploadcare.Widget('[role=uploadcare-uploader]');
-console.log(widgets);
-console.log(widget);
-widget.onUploadComplete(function(info) {
-  console.log(info.cdnUrl);
-  console.log(info);
-  $("#wuju").append('<img id="my-image">');
-  $("#my-image").attr("src", info.cdnUrl);
-  var el = document.getElementById("my-image");
-  var imgElement = document.getElementById('my-image');
-  var imgInstance = new fabric.Image(imgElement, {
-    height: 600,
-    width: 400,
-    left: 0,
-    top: 0,
-  // opacity: 0.85
+var addImage = function (){
+  $("#agregar").click(function(){
+    imgElement = $("#my-image")[0].src;
+    imgInstance = new fabric.Image.fromURL(imgElement,
+      function(oimg){
+        canvas.add(oimg);
+      },
+      {
+        top:0,
+        left: 0,
+        crossOrigin: 'anonymous'
+      });
+    
+    // canvas.controlsAboveOverlay = true;
+    // canvas.item(0).set({
+    //   borderColor: 'black',
+    //   cornerColor: 'black',
+    //   cornerSize: 20,
+    //   transparentCorners: false
+    // });
+  // canvas.setActiveObject(canvas.item(0));
+  // canvas.deactivateAll().renderAll();
+  // $('#newcaseimage').val(canvas.toDataURL('image/png'));
+  // console.log(newcaseimage);
 });
-  el.addEventListener("click",function(){
-    canvas.add(imgInstance);
-  // canvas.add(newpat);
-  // canvas.item(1).selectable = false;
-  // canvas.item(0).selectable = true;
-  // canvas.add(newCase);
-  // canvas.add(rect);
-  // canvas.add(rect2);
-  // canvas.add(rect3);
-  // canvas.add(rect4);
+};
+
+var saveCanvas = function (){
+  $("#guardar").click(function(){
+    canvas.deactivateAll().renderAll();
+    $('#newcaseimage').attr("src", canvas.toDataURL('image/png'));
+    console.log($("#newcaseimage").attr("src"));
+    
+  });
+};
+
+var delete_from_canvas = function () {
+  window.deleteObject = function() {
+    canvas.getActiveObject().remove();
+  }
+  console.log("working");
+}
+
+
+$(document).ready(function(){
+  createCanvas();
+  uploading();
+  addImage();
+  saveCanvas();
+  delete_from_canvas();
+
+  $("#creation").click(function(){
+    var newtext = $("#newtext").val();
+    var font_size = $("#pixels").val();
+    var text_color = $("#color_font").val();
+    var bg_color = $("#back_color").val();
+    var text = new fabric.Text(newtext, {fontFamily: "Times New Roman",fill: text_color, backgroundColor: bg_color, fontSize: font_size});
+    canvas.add(text);
+  });
+  $("#delete").click(function(){
+    canvas.remove(canvas.getActiveObject());
+  });
+  $('#angle-control').change(function() {
+    var rotateThisImage = canvas.getActiveObject();
+    rotateThisImage.setAngle(parseInt(this.value, 10)).setCoords();
+    canvas.renderAll();
+  });
+  $('#scale-control').change(function() {
+    var scaleThisImage = canvas.getActiveObject();
+    scaleThisImage.scale(parseFloat(this.value)).setCoords();
+    canvas.renderAll();
+  });
+  $('#newtext').emojiPicker({
+    height: '300px',
+    width: '450px'
+  })
+  // $('#picker').click(function(e) {
+  //       e.preventDefault();
+  //       $('#picker').emojiPicker('toggle');
+  //     });
 });
-});
 
 
 
-// var imagElement3 = document.getElementById('case');
-// var newCase = new fabric.Image(imagElement3,{
-//   height: 768,
-//   width: 576,
-//   left: -80,
-//   top:0,
-// });
-
-// var imagElement2 = document.getElementById('pattern');
-// var newpat = new fabric.Image(imagElement2, {
-//   height: 650,
-//   width: 420,
-//   left: 0,
-//   top: -20
-// });
 
 
-var rect = new fabric.Rect({
-  left: 0,
-  top: 0,
-  fill: 'white',
-  width: 40,
-  height: 600
-});
 
-var rect2 = new fabric.Rect({
-  left: 0,
-  top: 0,
-  fill: 'white',
-  width: 300,
-  height: 80
-});
 
-var rect3 = new fabric.Rect({
-  left: 0,
-  top: 550,
-  fill: 'white',
-  width: 300,
-  height: 50
-});
 
-var rect4 = new fabric.Rect({
-  left: 277,
-  top: 0,
-  fill: 'white',
-  width: 23,
-  height: 600
-});
+
+
+
+
 
 
 

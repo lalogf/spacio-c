@@ -1,0 +1,94 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:200);
+@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
+
+
+body{
+	font-family: 'Raleway', sans-serif;
+	background-color: rgba(255,255,255,0.8)
+}
+
+.navbar-inverse{
+	background:none;
+	background-color: rgba(255,255,255,0.9);
+	color:black;
+}
+
+.row{
+	margin-top: 50px;
+}
+
+.navbar-brand{
+	font-family: 'Shadows Into Light', cursive;
+}
+/*Avatar*/
+
+.pic{
+	text-align: center
+}
+
+#avatar{
+	border-bottom: black solid 1px;
+	padding: 20px;
+	background-color: rgba(0,0,0,0.8)
+}
+
+#quote{
+	margin-top: 20px;
+	font-size: 25px;
+	text-align: center;
+	color:white;
+}
+
+.name{
+	font-size: 25px;
+	color: white;
+	text-align: center;
+	font-family: 'Shadows Into Light', cursive;
+	letter-spacing: 2px;
+}
+.title{
+	margin-top: 10px;
+}
+
+/*Avatar finish*/
+
+
+
+
+
+.btn{
+	border-radius: 0px;
+	color: black;
+	background:none;
+}
+
+.btn-primary{
+	border: solid 2px #27ae60;
+	border-radius: 0px;
+	color: black;
+	background:none;
+	font-size: 15px;
+}
+
+.btn-primary:hover{
+	border: solid 2px #27ae60;
+	background: none;
+	background-color: #27ae60;
+	color:white;
+	font-size: 15px;
+}
+
+.thumbnail{
+	border: none;
+	box-shadow: none
+}
+
+.product{
+	width: 200px;
+	height: 200px;
+}
+
+.price{
+	font-size: 40px;
+	margin-top: 10px;
+}

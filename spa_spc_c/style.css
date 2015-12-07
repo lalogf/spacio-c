@@ -7,11 +7,13 @@ canvas {
 	background-position: -20px;*/
 }
 
-
+.container{
+	margin-top: 20px;
+}
 #my-image{
 	margin-top: 300px;
-	width: 100px;
-	height: 100px;
+	width: 250px;
+	height: 250px;
 }
 
 #logo{
@@ -31,5 +33,9 @@ canvas {
 
 .btn{
 	margin-top: 20px;
+}
+
+#myform{
+	margin-top: 100px;
 }
 
